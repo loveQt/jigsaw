@@ -1,6 +1,7 @@
-import test from 'node:test';
+import test, { describe } from 'node:test';
 import assert from 'node:assert/strict';
-import { LEVEL } from '../src/level.js';
+import { MOSAIC_DATA } from '../src/mosaic-data.js';
+import { CONTOUR_DATA } from '../src/contour-data.js';
 import { PuzzleEngine } from '../src/puzzle-engine.js';
 
 // Read the level's actual outlines, rather than trusting their cached bounds.
@@ -59,7 +60,7 @@ function samplePath(path) {
   return samples;
 }
 
-function makeLevelEngine() {
+function makeLevelEngine(LEVEL) {
   return new PuzzleEngine(LEVEL.pieces, {
     puzzleId: LEVEL.id,
     boardOrigin: { x: 45, y: 60 },
@@ -79,6 +80,8 @@ function inside(point, polygon) {
   }
   return result;
 }
+
+for (const LEVEL of [MOSAIC_DATA, CONTOUR_DATA]) describe(LEVEL.id, () => {
 
 test('level has a complete set of individually named, uniquely identified pieces', () => {
   assert.ok(typeof LEVEL.id === 'string' && LEVEL.id.length > 0);
@@ -170,7 +173,7 @@ test('piece shapes cover the assembled silhouette without substantial gaps or ov
 });
 
 test('actual adjacent dogs join off-board and their whole group moves together', () => {
-  const engine = makeLevelEngine();
+  const engine = makeLevelEngine(LEVEL);
   const a = LEVEL.pieces[0];
   const b = LEVEL.pieces.find(piece => piece.id === a.neighbors[0]);
   const first = engine.items.get(a.id);
@@ -185,13 +188,13 @@ test('actual adjacent dogs join off-board and their whole group moves together',
     assert.equal(item.y, before.y + 50);
     assert.equal(item.locked, false);
   }
-  const restored = makeLevelEngine();
+  const restored = makeLevelEngine(LEVEL);
   assert.equal(restored.restore(engine.serialize()), true);
   assert.equal(restored.getGroup(b.id).length, 2);
 });
 
 test('the actual level can be completed, restored and restarted', () => {
-  const engine = makeLevelEngine();
+  const engine = makeLevelEngine(LEVEL);
   for (const piece of LEVEL.pieces) engine.hint(piece.id);
   assert.equal(engine.progress.placed, LEVEL.pieces.length);
   assert.equal(engine.progress.percent, 100);
@@ -202,10 +205,25 @@ test('the actual level can be completed, restored and restarted', () => {
     assert.equal(item.y, 60);
     assert.equal(item.locked, true);
   }
-  const restored = makeLevelEngine();
+  const restored = makeLevelEngine(LEVEL);
   assert.equal(restored.restore(JSON.stringify(engine.serialize())), true);
   assert.equal(restored.completed, true);
   restored.reset();
   assert.equal(restored.progress.placed, 0);
   assert.equal(restored.groups.size, LEVEL.pieces.length);
+});
+
+});
+
+test('saved progress cannot cross between the two levels', () => {
+  const first = makeLevelEngine(MOSAIC_DATA);
+  const second = makeLevelEngine(CONTOUR_DATA);
+  first.hint();
+  second.hint();
+  const firstBefore = first.serialize();
+  const secondBefore = second.serialize();
+  assert.equal(first.restore(secondBefore), false);
+  assert.equal(second.restore(firstBefore), false);
+  assert.deepEqual(first.serialize(), firstBefore);
+  assert.deepEqual(second.serialize(), secondBefore);
 });

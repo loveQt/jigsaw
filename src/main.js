@@ -1,4 +1,4 @@
-import { LEVEL } from './level.js';
+import { LEVEL, LEVELS } from './level.js';
 import { PuzzleEngine } from './puzzle-engine.js';
 import { icon, hydrateIcons } from './icons.js';
 import { packRectangles } from './packing.js';
@@ -12,8 +12,20 @@ let mobile = window.matchMedia('(max-width: 720px)').matches;
 let WIDTH = mobile ? 700 : 1600, HEIGHT = mobile ? 1850 : 900;
 svg.setAttribute('viewBox', `0 0 ${WIDTH} ${HEIGHT}`);
 $('tabletop').classList.toggle('mobile-table', mobile);
-const SAVE_KEY = 'pawzzle-puppy-gathering-v2';
+const SAVE_KEY = LEVEL.saveKey;
 const TOTAL = LEVEL.pieces.length;
+document.title = `拼汪 PAWZZLE · ${LEVEL.title}`;
+$('level-title').textContent = LEVEL.title;
+$('level-chip').textContent = `第 ${LEVEL.number} 关`;
+$('level-description').textContent = LEVEL.subtitle;
+$('game-card').setAttribute('aria-label', `${LEVEL.title}拼图游戏`);
+$('level-select').replaceChildren(...LEVELS.map(level => {
+  const option = document.createElement('option');
+  option.value = level.number;
+  option.textContent = `${level.number} · ${level.title}`;
+  return option;
+}));
+$('level-select').value = LEVEL.number;
 document.querySelectorAll('[data-piece-count]').forEach(el=>el.textContent=TOTAL);
 document.querySelector('.progress-track').setAttribute('aria-valuemax', TOTAL);
 const meta = new Map(LEVEL.pieces.map(piece => [piece.id, piece]));
@@ -53,7 +65,7 @@ const engine = new PuzzleEngine(LEVEL.pieces, {
 
 function pieceArtwork(piece, withShadow = false) {
   const b=piece.bounds;
-  return `<path d="${piece.path}" fill="#946942" ${withShadow?'filter="url(#piece-shadow)"':''}/><g clip-path="url(#clip-${piece.id})"><image href="${piece.image}" x="${b.x}" y="${b.y}" width="${b.width}" height="${b.height}" pointer-events="none"/></g><path d="${piece.path}" class="piece-edge"/>`;
+  return `<path d="${piece.path}" fill="${piece.fill ?? '#946942'}" ${withShadow?'filter="url(#piece-shadow)"':''}/><g clip-path="url(#clip-${piece.id})"><image href="${piece.image}" x="${b.x}" y="${b.y}" width="${b.width}" height="${b.height}" pointer-events="none"/></g><path d="${piece.path}" class="piece-edge"/>`;
 }
 
 const defs = `<defs>
@@ -188,7 +200,7 @@ function afterDrop(result,id) {
     for (const item of engine.getGroup(id)) {
       const node=nodes.get(item.id);node.classList.add('flash');setTimeout(()=>node.classList.remove('flash'),450);
     }
-    if (!result.completed) toast(result.placed ? `好耶，${result.placed>1?`${result.placed} 只小狗一起`:'这只小狗'}找到家了` : `拼在一起啦！现在可以拖动这 ${engine.getGroup(id).length} 块`);
+    if (!result.completed) toast(result.placed ? `好耶，${result.placed>1?`${result.placed} 片小快乐一起`:'这片小快乐'}找到家了` : `拼在一起啦！现在可以拖动这 ${engine.getGroup(id).length} 块`);
   }
   render(); save();
   if(result.completed) { celebrate(); openModal('complete'); }
@@ -264,7 +276,7 @@ svg.addEventListener('keydown',event=>{
 });
 
 function previewSVG() {
-  return `<svg class="preview-art" viewBox="0 0 600 600" role="img" aria-label="${TOTAL} 只小狗组成的完整狗头原图"><defs><clipPath id="preview-outline"><path d="${LEVEL.outline}"/></clipPath></defs><path d="${LEVEL.outline}" fill="#d5bd8f" stroke="#9f8155" stroke-width="4" stroke-linejoin="round"/><image href="${LEVEL.image}" width="600" height="600" clip-path="url(#preview-outline)"/></svg>`;
+  return `<svg class="preview-art" viewBox="0 0 ${LEVEL.width} ${LEVEL.height}" role="img" aria-label="${LEVEL.title}，${TOTAL} 块拼片组成的完整狗头"><defs><clipPath id="preview-outline"><path d="${LEVEL.outline}"/></clipPath></defs><path d="${LEVEL.outline}" fill="#d5bd8f" stroke="#9f8155" stroke-width="4" stroke-linejoin="round"/><image href="${LEVEL.image}" width="${LEVEL.width}" height="${LEVEL.height}" clip-path="url(#preview-outline)"/></svg>`;
 }
 function closeModal() {if(dialog.open) dialog.close();}
 function openModal(type) {
@@ -276,7 +288,7 @@ function openModal(type) {
   if(type==='preview') content.innerHTML=`<div class="eyebrow">THE BIG PICTURE</div><h2 id="dialog-title">原来，快乐长这样。</h2><p>记住你喜欢的小狗，再回去找找它。查看期间暂停计时。</p>${previewSVG()}<button class="primary-button" data-action="close">回到拼图${icon('arrow')}</button>`;
   if(type==='help') content.innerHTML=`<div class="modal-emblem">${icon('paw')}</div><div class="eyebrow">MAKE YOURSELF AT HOME</div><h2 id="dialog-title">一片一片，慢慢来。</h2><div class="help-steps"><div class="help-step"><span>01</span><div><strong>找到小狗的位置</strong><p>把碎片拖到底板，对准轮廓，松手后就会吸附。所有碎片方向都已摆正，无需旋转。</p></div></div><div class="help-step"><span>02</span><div><strong>整个桌面都是你的拼图区</strong><p>碎片可以留在任意空位。相邻碎片在桌面上对齐，也会拼成一组，整组一起拖动。</p></div></div><div class="help-step"><span>03</span><div><strong>按自己的节奏玩</strong><p>点击时钟切换自由模式。随时暂停、查看原图，或用「帮我一块」放好选中的拼块组。进度自动保存。</p></div></div></div><p>小屏幕上下滚动桌面；拖到屏幕上下边缘会自动滚动。<br/>键盘：Tab 选块 · 方向键移动 · Shift 加速 · 回车吸附</p><button class="primary-button" data-action="close">我知道啦${icon('heart')}</button>`;
   if(type==='restart') content.innerHTML=`<div class="modal-emblem">${icon('restart')}</div><h2 id="dialog-title">再拼一次小快乐？</h2><p>这一关的拼块会重新打散，计时和进度也会归零。</p><div class="dialog-actions"><button class="secondary-button" data-action="close">接着拼</button><button class="primary-button" data-action="restart">重新开始</button></div>`;
-  if(type==='complete') content.innerHTML=`<div class="modal-emblem">${icon('paw')}</div><div class="eyebrow">ALL TOGETHER, AT LAST</div><h2 id="dialog-title">快乐，完整了！</h2><p>${TOTAL} 只小狗都找到家了。<br/>谢谢你，为今天拼出了一点小美好。</p><div class="success-stats"><div><strong>${timerEnabled?formatTime(elapsed):'自由'}</strong><span>${timerEnabled?'计时用时':'慢慢享受'}</span></div><div><strong>${TOTAL} / ${TOTAL}</strong><span>小狗已集合</span></div><div><strong>${hintCount}</strong><span>使用帮助</span></div></div><div class="dialog-actions"><button class="secondary-button" data-action="close">欣赏作品</button><button class="primary-button" data-action="restart">再拼一次${icon('restart')}</button></div>`;
+  if(type==='complete') content.innerHTML=`<div class="modal-emblem">${icon('paw')}</div><div class="eyebrow">ALL TOGETHER, AT LAST</div><h2 id="dialog-title">快乐，完整了！</h2><p>${TOTAL} 片小快乐都找到家了。<br/>谢谢你，为今天拼出了一点小美好。</p><div class="success-stats"><div><strong>${timerEnabled?formatTime(elapsed):'自由'}</strong><span>${timerEnabled?'计时用时':'慢慢享受'}</span></div><div><strong>${TOTAL} / ${TOTAL}</strong><span>拼片已集合</span></div><div><strong>${hintCount}</strong><span>使用帮助</span></div></div><div class="dialog-actions"><button class="secondary-button" data-action="close">欣赏作品</button><button class="primary-button" data-action="restart">再拼一次${icon('restart')}</button></div>`;
   if(!dialog.open) dialog.showModal();
   lastTick=performance.now();
   save();
@@ -302,6 +314,13 @@ function celebrate() {
   $('confetti').innerHTML=Array.from({length:55},(_,i)=>`<i style="left:${Math.random()*100}%;background:${['#bd6b46','#a2ad80','#e0bd69','#d2c2a3'][i%4]};animation-delay:${Math.random()*.65}s;--drift:${Math.random()*160-80}px"></i>`).join('');
   setTimeout(()=>$('confetti').replaceChildren(),4000);
 }
+
+$('level-select').addEventListener('change', event => {
+  cancelDrag();save();
+  const url = new URL(window.location.href);
+  url.searchParams.set('level', event.target.value);
+  window.location.assign(url);
+});
 
 $('pause-button').addEventListener('click',()=>openModal('pause'));
 $('preview-button').addEventListener('click',()=>openModal('preview'));

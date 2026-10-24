@@ -20,16 +20,19 @@
     <main>
       <section class="level-heading">
         <div>
-          <div class="eyebrow"><span class="tiny-line"></span> THE LITTLE JOY COLLECTION <span class="level-chip">第 01 关</span></div>
-          <h1>汪汪，集合！<span class="title-spark">✳</span></h1>
-          <p><span data-piece-count>14</span> 只小狗，一个大大的拥抱。慢慢拼，快乐会自己找到位置。</p>
+          <div class="eyebrow"><span class="tiny-line"></span> THE LITTLE JOY COLLECTION <span class="level-chip" id="level-chip">第 02 关</span></div>
+          <h1><span id="level-title">汪汪表情集</span><span class="title-spark">✳</span></h1>
+          <p id="level-description">9 只小狗，拼出一个大大的拥抱。</p>
         </div>
-        <div class="level-meta"><span><i class="difficulty-dots"><b></b><b></b><b></b></i> 轻松入门</span><span><span data-icon="puzzle"></span> <span data-piece-count>14</span> 块小狗拼图</span><span><span data-icon="leaf"></span> 无需旋转</span></div>
+        <div class="level-details">
+          <label class="level-picker" for="level-select"><span>换一份快乐</span><select id="level-select" aria-label="选择关卡"><option value="01">01 · 汪汪，集合！</option><option value="02" selected>02 · 汪汪表情集</option></select></label>
+          <div class="level-meta"><span><i class="difficulty-dots"><b></b><b></b><b></b></i> 轻松入门</span><span><span data-icon="puzzle"></span> <span data-piece-count>9</span> 块小狗拼图</span><span><span data-icon="leaf"></span> 无需旋转</span></div>
+        </div>
       </section>
 
-      <section class="game-card" id="game-card" aria-label="汪汪集合拼图游戏">
+      <section class="game-card" id="game-card" aria-label="汪汪表情集拼图游戏">
         <div class="game-toolbar">
-          <div class="progress-area"><span class="progress-icon" data-icon="puzzle"></span><div><div class="progress-copy">拼图进度 <strong><span id="placed-count">0</span><span class="count-total"> / <span data-piece-count>14</span></span></strong></div><div class="progress-track" role="progressbar" aria-label="拼图完成进度" aria-valuemin="0" aria-valuemax="14" aria-valuenow="0"><span id="progress-fill"></span></div></div></div>
+          <div class="progress-area"><span class="progress-icon" data-icon="puzzle"></span><div><div class="progress-copy">拼图进度 <strong><span id="placed-count">0</span><span class="count-total"> / <span data-piece-count>9</span></span></strong></div><div class="progress-track" role="progressbar" aria-label="拼图完成进度" aria-valuemin="0" aria-valuemax="9" aria-valuenow="0"><span id="progress-fill"></span></div></div></div>
           <div class="toolbar-actions">
             <button class="timer-button" id="timer-button" aria-label="切换计时模式" aria-pressed="true" title="切换计时 / 自由模式"><span data-icon="clock"></span><span id="timer">00:00</span><span class="timer-dot"></span></button>
             <span class="toolbar-divider"></span>
@@ -45,7 +48,7 @@
             <div class="table-label board-label"><span class="label-dot"></span> 小狗们的家 <span class="label-sub">THE BIG PICTURE</span></div>
             <div class="table-label pieces-label">散落的小快乐 <span class="label-sub">YOUR LITTLE PIECES</span></div>
             <svg id="puzzle-canvas" viewBox="0 0 1400 760" xmlns="http://www.w3.org/2000/svg" aria-label="拼图桌面，拖动小狗碎片，自由拼接" role="group"></svg>
-            <div class="board-caption"><span data-icon="heart"></span> 每一只小狗，都有属于自己的位置。</div>
+            <div class="board-caption"><span data-icon="heart"></span> 每一片小快乐，都有属于自己的位置。</div>
             <div class="canvas-hint" id="canvas-hint"><span data-icon="hand"></span> 拖起一片，开始今天的小快乐</div>
           </div>
         </div>
