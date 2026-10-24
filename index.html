@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f7f5ef" />
+    <meta name="description" content="把小狗们拼成一只大狗。一个可以慢慢玩的异形木质拼图游戏。" />
+    <title>拼汪 PAWZZLE · 把快乐，一片片拼起来</title>
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+    <link rel="stylesheet" href="/src/style.css" />
+    <script type="module" src="/src/main.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="./" aria-label="拼汪首页"><span class="brand-mark" data-icon="paw"></span><span>拼汪<span class="brand-en">PAWZZLE</span></span></a>
+      <div class="header-note">给忙碌的生活，留一小块空白。</div>
+      <button class="text-button" id="help-button"><span data-icon="help"></span>玩法指南</button>
+    </header>
+
+    <main>
+      <section class="level-heading">
+        <div>
+          <div class="eyebrow"><span class="tiny-line"></span> THE LITTLE JOY COLLECTION <span class="level-chip">第 01 关</span></div>
+          <h1>汪汪，集合！<span class="title-spark">✳</span></h1>
+          <p><span data-piece-count>14</span> 只小狗，一个大大的拥抱。慢慢拼，快乐会自己找到位置。</p>
+        </div>
+        <div class="level-meta"><span><i class="difficulty-dots"><b></b><b></b><b></b></i> 轻松入门</span><span><span data-icon="puzzle"></span> <span data-piece-count>14</span> 块小狗拼图</span><span><span data-icon="leaf"></span> 无需旋转</span></div>
+      </section>
+
+      <section class="game-card" id="game-card" aria-label="汪汪集合拼图游戏">
+        <div class="game-toolbar">
+          <div class="progress-area"><span class="progress-icon" data-icon="puzzle"></span><div><div class="progress-copy">拼图进度 <strong><span id="placed-count">0</span><span class="count-total"> / <span data-piece-count>14</span></span></strong></div><div class="progress-track" role="progressbar" aria-label="拼图完成进度" aria-valuemin="0" aria-valuemax="14" aria-valuenow="0"><span id="progress-fill"></span></div></div></div>
+          <div class="toolbar-actions">
+            <button class="timer-button" id="timer-button" aria-label="切换计时模式" aria-pressed="true" title="切换计时 / 自由模式"><span data-icon="clock"></span><span id="timer">00:00</span><span class="timer-dot"></span></button>
+            <span class="toolbar-divider"></span>
+            <button class="tool-button" id="pause-button" title="暂停 · 空格"><span data-icon="pause"></span><span>暂停</span></button>
+            <button class="tool-button" id="preview-button" title="查看原图 · P"><span data-icon="image"></span><span>查看原图</span></button>
+            <button class="tool-button" id="sound-button" aria-label="开启拼接音效" aria-pressed="false" title="开启拼接音效"><span data-icon="sound-off"></span></button>
+            <button class="tool-button fullscreen-button" id="fullscreen-button" aria-label="全屏游戏" title="全屏游戏"><span data-icon="expand"></span></button>
+          </div>
+        </div>
+
+        <div class="tabletop-scroll" id="tabletop-scroll">
+          <div class="tabletop" id="tabletop">
+            <div class="table-label board-label"><span class="label-dot"></span> 小狗们的家 <span class="label-sub">THE BIG PICTURE</span></div>
+            <div class="table-label pieces-label">散落的小快乐 <span class="label-sub">YOUR LITTLE PIECES</span></div>
+            <svg id="puzzle-canvas" viewBox="0 0 1400 760" xmlns="http://www.w3.org/2000/svg" aria-label="拼图桌面，拖动小狗碎片，自由拼接" role="group"></svg>
+            <div class="board-caption"><span data-icon="heart"></span> 每一只小狗，都有属于自己的位置。</div>
+            <div class="canvas-hint" id="canvas-hint"><span data-icon="hand"></span> 拖起一片，开始今天的小快乐</div>
+          </div>
+        </div>
+
+        <div class="game-footer">
+          <div class="footer-tip"><span class="tip-icon" data-icon="magnet"></span><span>相邻拼块靠近就会吸附，<strong>在底板外也能先拼成一组</strong></span></div>
+          <div class="footer-actions"><button id="shuffle-button" class="text-button"><span data-icon="shuffle"></span>整理碎片</button><button id="hint-button" class="text-button accent"><span data-icon="bulb"></span>帮我一块</button><button id="restart-button" class="icon-button" aria-label="重新开始" title="重新开始"><span data-icon="restart"></span></button></div>
+        </div>
+      </section>
+
+      <footer class="page-footer"><span><span class="status-dot"></span><span id="save-status">进度自动保存在此浏览器</span></span><span>不赶时间，拼好心情。<span class="little-paw" data-icon="paw"></span></span><span class="keyboard-note"><kbd>空格</kbd> 暂停 <span>·</span> <kbd>P</kbd> 原图</span></footer>
+    </main>
+
+    <dialog id="game-dialog" aria-labelledby="dialog-title"><button id="dialog-close" class="dialog-close icon-button" aria-label="关闭弹窗"><span data-icon="close"></span></button><div id="dialog-content"></div></dialog>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <div id="confetti" class="confetti" aria-hidden="true"></div>
+  </body>
+</html>
