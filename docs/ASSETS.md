@@ -1,6 +1,40 @@
 # 关卡素材与生成流程
 
-## 第二关「汪汪表情集」（默认，9 块）
+## 第三关「汪汪游乐园」（默认，30 块，满版修订）
+
+每块拼片由狗狗的脸、躯干、脚掌或其他局部铺满，图片延伸到切线。摄影风格占主要部分，辅以油画、水彩、粉彩、炭笔、水墨、彩铅、版画和少量漫画／像素画。原先的透明小狗贴在彩色衬底上的版本已替换。
+
+- 几何：`src/party-geometry.js`，继续使用 30 个共享边界的异形区域，保留第二关大轮廓。
+- 生图：内置 `image_gen`，30 张独立源图分别生成；`transparent_background: false`。要求极近景，狗狗或局部充满整个画面，四角都是毛发或身体；五官、肉垫等重点尽量位于中部，边缘允许裁断。
+- 媒介分布：17 张摄影风格、10 张绘画／素描／版画、3 张图形画风。分类用于素材编排；摄影风格也是 AI 生成图像。
+- 方向与提示词：`docs/party-art-direction-v2.json`、`docs/party-image-prompts-v2/p01.txt` 至 `p30.txt`。
+- 源图：`public/assets/party-source-v2/p01.png` 至 `p30.png`，保留内置工具实际返回的原始尺寸。每张实际尺寸与裁取坐标见 `docs/party-source-manifest-v2.json`。
+- 运行映射：`src/party-data.js`，画面版本为 `full-bleed-v2`；几何和关卡 ID `dog-party-v1` 不变，已有进度继续兼容。
+
+### 本地裁切与组装
+
+```sh
+npm run generate:party
+PAWZZLE_PYTHON=/path/to/python npm run generate:party
+npm run generate:party -- --partial
+```
+
+需要 Pillow、NumPy。脚本不调用图片 API，不修改源图。读取每张源图，等比例放大到完全覆盖拼片边界框；按实际尺寸裁取图像，再施加异形透明蒙版。无安全区缩小、无彩色衬底、无贴纸摆放。可在方向文件为个别拼片设置 `cropAnchor`、`cropZoom` 校准重点位置。
+
+`--partial` 只把已有图片的试切结果写入 `work/party-v2/`，供逐块检查。完整模式要求 30 张图片全部存在且不透明，成功组装后才发布运行映射。
+
+| 文件 | 内容 |
+| --- | --- |
+| `public/assets/party-source-v2/` | 30 张独立生成的满版源图 |
+| `public/assets/party-dogs-v2/` | 30 张按固定轮廓裁切的透明 PNG，像素比例 3 |
+| `public/assets/party-dogs-v2.png` | 1800 × 1800 完整预览 |
+| `public/assets/party-contact-v2.png` | 1800 × 1500 独立拼片总览 |
+| `docs/party-source-manifest-v2.json` | 原始尺寸、实际裁取坐标、风格与构图 |
+| `src/party-data.js` | 生成的运行时素材映射 |
+
+完整预览合并相邻边的覆盖权重并使用统一外轮廓蒙版，避免透明细缝。自动测试同时检查边缘图像细节，防止再次退回“纯色背景包围小贴纸”的构图。
+
+## 第二关「汪汪表情集」（保留，9 块）
 
 第二关先确定大狗头外轮廓，再切成 9 个较宽、平滑、可辨认的狗头区域，然后用各区域轮廓逐块生成手绘风格素材。狗头特写、侧脸和歪头姿态不要求完整身体；区域仍然共享边界并完整覆盖大轮廓，不靠移动素材或留白解决拼接问题。
 

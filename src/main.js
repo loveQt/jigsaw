@@ -18,6 +18,8 @@ document.title = `拼汪 PAWZZLE · ${LEVEL.title}`;
 $('level-title').textContent = LEVEL.title;
 $('level-chip').textContent = `第 ${LEVEL.number} 关`;
 $('level-description').textContent = LEVEL.subtitle;
+$('level-difficulty').textContent = LEVEL.difficulty;
+document.querySelector('.difficulty-dots').classList.toggle('advanced', TOTAL >= 30);
 $('game-card').setAttribute('aria-label', `${LEVEL.title}拼图游戏`);
 $('level-select').replaceChildren(...LEVELS.map(level => {
   const option = document.createElement('option');
@@ -234,6 +236,14 @@ function dragAutoScroll() {
   }
   drag.frame=requestAnimationFrame(dragAutoScroll);
 }
+
+// SVG graphics do not consistently honor touch-action on descendant groups.
+// Cancel native panning only when a loose piece is grabbed; blank table space
+// still uses the browser's normal scrolling gesture.
+svg.addEventListener('touchstart',event=>{
+  const node=event.target.closest('[data-piece]');
+  if(!modalType && node && !engine.items.get(node.dataset.piece).locked) event.preventDefault();
+},{passive:false});
 
 svg.addEventListener('pointerdown',event=>{
   if (modalType || (event.pointerType==='mouse' && event.button!==0) || drag) return;

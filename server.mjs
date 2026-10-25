@@ -8,6 +8,7 @@ const runtimeFiles = new Set([
   '/index.html', '/src/main.js', '/src/level.js', '/src/puzzle-engine.js',
   '/src/icons.js', '/src/style.css', '/src/packing.js', '/src/mosaic-data.js',
   '/src/contour-data.js', '/src/contour-geometry.js',
+  '/src/party-data.js', '/src/party-geometry.js',
 ]);
 const types = {
   '.html': 'text/html; charset=utf-8',

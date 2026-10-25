@@ -2,6 +2,8 @@ import test, { describe } from 'node:test';
 import assert from 'node:assert/strict';
 import { MOSAIC_DATA } from '../src/mosaic-data.js';
 import { CONTOUR_DATA } from '../src/contour-data.js';
+import { PARTY_DATA } from '../src/party-data.js';
+import { LEVEL, LEVELS } from '../src/level.js';
 import { PuzzleEngine } from '../src/puzzle-engine.js';
 
 // Read the level's actual outlines, rather than trusting their cached bounds.
@@ -81,14 +83,14 @@ function inside(point, polygon) {
   return result;
 }
 
-for (const LEVEL of [MOSAIC_DATA, CONTOUR_DATA]) describe(LEVEL.id, () => {
+for (const LEVEL of [MOSAIC_DATA, CONTOUR_DATA, PARTY_DATA]) describe(LEVEL.id, () => {
 
 test('level has a complete set of individually named, uniquely identified pieces', () => {
   assert.ok(typeof LEVEL.id === 'string' && LEVEL.id.length > 0);
   assert.ok(Number.isFinite(LEVEL.width) && LEVEL.width > 0);
   assert.ok(Number.isFinite(LEVEL.height) && LEVEL.height > 0);
   assert.ok(LEVEL.pieces.length >= 8 && LEVEL.pieces.length <= 30,
-    `This introductory level should contain 8–30 dogs, got ${LEVEL.pieces.length}`);
+    `This collection should contain 8–30 dogs, got ${LEVEL.pieces.length}`);
   assert.equal(new Set(LEVEL.pieces.map(piece => piece.id)).size, LEVEL.pieces.length);
   for (const piece of LEVEL.pieces) {
     assert.ok(typeof piece.id === 'string' && piece.id.length > 0);
@@ -215,15 +217,23 @@ test('the actual level can be completed, restored and restarted', () => {
 
 });
 
-test('saved progress cannot cross between the two levels', () => {
-  const first = makeLevelEngine(MOSAIC_DATA);
-  const second = makeLevelEngine(CONTOUR_DATA);
-  first.hint();
-  second.hint();
-  const firstBefore = first.serialize();
-  const secondBefore = second.serialize();
-  assert.equal(first.restore(secondBefore), false);
-  assert.equal(second.restore(firstBefore), false);
-  assert.deepEqual(first.serialize(), firstBefore);
-  assert.deepEqual(second.serialize(), secondBefore);
+test('all three levels are available with independent saves and the new collection opens by default', () => {
+  assert.deepEqual(LEVELS.map(level => level.number), ['01', '02', '03']);
+  assert.equal(LEVEL.number, '03');
+  assert.equal(LEVEL.pieces.length, 30);
+  assert.equal(new Set(LEVELS.map(level => level.saveKey)).size, LEVELS.length);
+  assert.equal(LEVELS[0].saveKey, 'pawzzle-puppy-gathering-v2');
+  assert.equal(LEVELS[1].saveKey, `pawzzle-${CONTOUR_DATA.id}-v1`);
+});
+
+test('saved progress cannot cross between any of the three levels', () => {
+  const engines = [MOSAIC_DATA, CONTOUR_DATA, PARTY_DATA].map(makeLevelEngine);
+  engines.forEach(engine => engine.hint());
+  const snapshots = engines.map(engine => engine.serialize());
+  for (let index = 0; index < engines.length; index += 1) {
+    for (let other = 0; other < engines.length; other += 1) {
+      if (other !== index) assert.equal(engines[index].restore(snapshots[other]), false);
+    }
+    assert.deepEqual(engines[index].serialize(), snapshots[index]);
+  }
 });

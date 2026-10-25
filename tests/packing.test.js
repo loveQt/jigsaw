@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { packRectangles } from '../src/packing.js';
 import { MOSAIC_DATA } from '../src/mosaic-data.js';
 import { CONTOUR_DATA } from '../src/contour-data.js';
+import { PARTY_DATA } from '../src/party-data.js';
 
 const areas = {
   desktop: { x: 690, y: 80, width: 890, height: 760 },
@@ -51,7 +52,7 @@ function orderedVariations(rectangles) {
 }
 
 for (const [name, area] of Object.entries(areas)) {
-  for (const LEVEL of [MOSAIC_DATA, CONTOUR_DATA]) test(`${LEVEL.id}: all actual dog bounds fit the ${name} scatter area without overlap`, () => {
+  for (const LEVEL of [MOSAIC_DATA, CONTOUR_DATA, PARTY_DATA]) test(`${LEVEL.id}: all actual dog bounds fit the ${name} scatter area without overlap`, () => {
     const rectangles = LEVEL.pieces.map(piece => ({ id: piece.id, width: piece.bounds.width, height: piece.bounds.height }));
     for (const variation of orderedVariations(rectangles)) assertPacking(variation, area);
   });

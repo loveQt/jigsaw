@@ -9,6 +9,7 @@
     "start": "node server.mjs",
     "test": "node --test",
     "generate:contour": "node scripts/generate-contour-level.mjs",
+    "generate:party": "node scripts/generate-party-level.mjs",
     "build": "node scripts/build.mjs"
   },
   "engines": { "node": ">=20" }

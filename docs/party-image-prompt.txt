@@ -1,0 +1,47 @@
+Use case: stylized-concept.
+Asset type: ONE production PNG sprite atlas for a warm, playful dog jigsaw game.
+Create a single landscape atlas of EXACTLY THIRTY individual dog illustrations, arranged in EXACTLY SIX EQUAL COLUMNS and FIVE EQUAL ROWS. Target canvas 3072 × 2560, aspect ratio 6:5. All 30 invisible cells are the same size, and each dog plus any prop stays completely within the central 72% of its own cell. All cells must contain exactly one dog. No empty cells, no duplicated dogs, no extra dogs. Genuine transparent background everywhere outside the dog-and-prop silhouettes, not a painted checkerboard, not a white canvas. No visible grid, no labels, numbers, lettering, border, watermark, floor or scenery.
+
+Each illustration is a charming, polished, readable character with a distinct breed, action, and medium, like a delightful curated sticker collection. Mix unmistakable styles: textured gouache, bold outlined kawaii sticker, layered paper cutout, colored pencil, clay-toy rendering, playful pixel art. Cohesive warm colors with coral, ochre, cream, sage and little blue accents. Strong silhouettes and clean readable details at small game scale. Most dogs are FULL BODY showing paws and tail, never crop anatomy at cell edges. A few are deliberately half-body from waist up, always with both forepaws. No isolated head portraits. Keep the model's illustrated anatomy appealing.
+
+Place the following EXACT dog-and-action subjects in row-major order, left to right:
+ROW 1:
+1. Full-body corgi happily riding a tiny coral skateboard, bold outlined kawaii sticker style.
+2. Full-body long chocolate dachshund doing a deep morning stretch, warm textured gouache.
+3. Full-body dalmatian jumping upward to catch a blue ball, crisp layered papercut.
+4. Full-body golden retriever sitting and reading an open sage book held in paws, soft colored-pencil storybook.
+5. Full-body orange shiba curled asleep with tail across nose, cozy sculpted clay-toy style.
+6. Full-body cream poodle dancing upright with lifted paws, retro rubber-hose cartoon.
+ROW 2:
+7. Full-body little terrier walking in a yellow raincoat and tiny boots, colorful outlined sticker.
+8. Half-body gray husky in a coral scarf, waving one forepaw, textured gouache.
+9. Full-body round pug floating in a simple cute astronaut suit, soft clay-toy.
+10. Half-body white westie painter with a beret, paintbrush and palette in paws, colored pencil.
+11. Full-body black-and-white border collie play-bowing beside a small orange frisbee, bright papercut.
+12. Full-body fluffy pomeranian running joyfully, deliberately blocky polished pixel art.
+ROW 3:
+13. Full-body basset hound lounging belly-up, big floppy ears, humorous vintage ink-and-watercolor cartoon.
+14. Full-body beagle sitting with a red backpack, adventurous gouache storybook.
+15. Half-body french bulldog in blue overalls holding a little flower with a paw, kawaii sticker.
+16. Full-body saluki elegantly leaping sideways, graceful torn-paper collage.
+17. Full-body tiny maltese twirling in a coral bow, fluffy soft clay-toy.
+18. Full-body schnauzer investigating a butterfly near its nose, colored-pencil sketch with warm washes.
+ROW 4:
+19. Full-body white samoyed sitting happily on a tiny blue sled, textured gouache.
+20. Full-body chihuahua confidently wearing oversized round sunglasses, bold outlined sticker.
+21. Full-body long black dachshund curled into a donut shape, playful papercut.
+22. Half-body golden cocker spaniel peeking over a held heart-shaped cushion, tender watercolor.
+23. Full-body little brown mutt doing a handstand with ears dangling, whimsical ink cartoon.
+24. Full-body red shiba hopping with a yellow star toy, polished chunky pixel art.
+ROW 5:
+25. Full-body brindle boxer sitting and giving a high-five, friendly clay-toy.
+26. Full-body red-and-white corgi splooting flat with back paws stretched out, warm gouache.
+27. Half-body gray schnauzer as a tiny chef holding a wooden spoon, outlined sticker.
+28. Full-body cream labrador carrying an enormous green leaf like an umbrella, layered papercut.
+29. Full-body small black poodle yawning and stretching sideways, soft colored-pencil storybook.
+30. Full-body spotted terrier waving a small coral pennant while standing proudly, retro cartoon.
+
+The cell layout is a strict 6 by 5 texture-atlas alignment for machine cropping, but there are no drawn boxes. Center every isolated character-and-prop group in its cell, maintain generous empty transparent gutters, and preserve every paw, ear, tail, and prop. Make the collection joyful and varied, with visibly different poses and rendering styles.
+
+Refinement prompt (generated as party-atlas-v2.png; selected final saved as public/assets/party-atlas.png; built-in imagegen edit, transparent_background=true):
+Edit this production game sprite atlas. Preserve exactly the same thirty dog illustrations, their styles, anatomy, props and row-major order, and preserve the 6 columns × 5 rows canvas arrangement. CHANGE ONLY their position and overall size within their respective cells: SHRINK EVERY DOG-AND-PROP GROUP to fit entirely within the central 68% of its own equal-sized square cell, and precisely center that group in the cell. Every cell must have a fully empty transparent gutter at least16% of the cell width on all four sides. No paws, tails, props, ears or heads may cross a cell boundary. Keep every dog and prop complete, with no cropping or modifications. This is a texture atlas that will be cut on exact equal grid boundaries, so generous transparent gutters are crucial. Keep the background genuinely alpha transparent. Remove stray colored fringing outside each illustration. No drawn grid, no text or numbering, no new illustrations. The output remains one 6:5 landscape PNG atlas with exactly30 isolated dogs.

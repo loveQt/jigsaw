@@ -1,0 +1,697 @@
+{
+  "generator": "built-in image_gen",
+  "revision": "full-bleed-v2",
+  "pixelScale": 3,
+  "pieces": [
+    {
+      "id": "p01",
+      "name": "贴近镜头的柴柴",
+      "style": "自然摄影",
+      "category": "photography",
+      "framing": "脸部特写",
+      "source": "/assets/party-source-v2/p01.png",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        142.0546875,
+        0,
+        1111.9453125,
+        1254.0
+      ],
+      "outputSize": [
+        297,
+        384
+      ],
+      "mode": "cover-then-contour-mask"
+    },
+    {
+      "id": "p02",
+      "name": "蜷成一团的腊肠",
+      "style": "胶片摄影",
+      "category": "photography",
+      "framing": "身体局部",
+      "source": "/assets/party-source-v2/p02.png",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        0,
+        115.75384615384615,
+        1254.0,
+        1138.246153846154
+      ],
+      "outputSize": [
+        390,
+        318
+      ],
+      "mode": "cover-then-contour-mask"
+    },
+    {
+      "id": "p03",
+      "name": "扑过来的斑点狗",
+      "style": "运动摄影",
+      "category": "photography",
+      "framing": "半身动作",
+      "source": "/assets/party-source-v2/p03.png",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        0,
+        165.9705882352941,
+        1254.0,
+        1088.0294117647059
+      ],
+      "outputSize": [
+        408,
+        300
+      ],
+      "mode": "cover-then-contour-mask"
+    },
+    {
+      "id": "p04",
+      "name": "金毛的暖洋洋",
+      "style": "写实水彩",
+      "category": "fine-art",
+      "framing": "半身",
+      "source": "/assets/party-source-v2/p04.png",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        0,
+        121.65671641791045,
+        1254.0,
+        1132.3432835820895
+      ],
+      "outputSize": [
+        402,
+        324
+      ],
+      "mode": "cover-then-contour-mask"
+    },
+    {
+      "id": "p05",
+      "name": "哈士奇的蓝眼睛",
+      "style": "微距摄影",
+      "category": "photography",
+      "framing": "眼睛局部",
+      "source": "/assets/party-source-v2/p05.png",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        132.2578125,
+        0,
+        1121.7421875,
+        1254.0
+      ],
+      "outputSize": [
+        303,
+        384
+      ],
+      "mode": "cover-then-contour-mask"
+    },
+    {
+      "id": "p06",
+      "name": "卷毛小舞者",
+      "style": "油画",
+      "category": "fine-art",
+      "framing": "半身动作",
+      "source": "/assets/party-source-v2/p06.png",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        104.5,
+        0,
+        1149.5,
+        1254.0
+      ],
+      "outputSize": [
+        300,
+        360
+      ],
+      "mode": "cover-then-contour-mask"
+    },
+    {
+      "id": "p07",
+      "name": "柯基趴趴腿",
+      "style": "自然摄影",
+      "category": "photography",
+      "framing": "身体局部",
+      "source": "/assets/party-source-v2/p07.png",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        0,
+        58.05555555555554,
+        1254.0,
+        1195.9444444444443
+      ],
+      "outputSize": [
+        324,
+        294
+      ],
+      "mode": "cover-then-contour-mask"
+    },
+    {
+      "id": "p08",
+      "name": "灵缇的侧影",
+      "style": "炭笔素描",
+      "category": "fine-art",
+      "framing": "侧脸半身",
+      "source": "/assets/party-source-v2/p08.png",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        52.68907563025209,
+        0,
+        1201.310924369748,
+        1254.0
+      ],
+      "outputSize": [
+        327,
+        357
+      ],
+      "mode": "cover-then-contour-mask"
+    },
+    {
+      "id": "p09",
+      "name": "巴哥皱皱脸",
+      "style": "棚拍摄影",
+      "category": "photography",
+      "framing": "脸部特写",
+      "source": "/assets/party-source-v2/p09.png",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        132.53658536585363,
+        0,
+        1121.4634146341464,
+        1254.0
+      ],
+      "outputSize": [
+        291,
+        369
+      ],
+      "mode": "cover-then-contour-mask"
+    },
+    {
+      "id": "p10",
+      "name": "边牧回头看",
+      "style": "水墨写实",
+      "category": "fine-art",
+      "framing": "半身",
+      "source": "/assets/party-source-v2/p10.png",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        58.05555555555554,
+        0,
+        1195.9444444444443,
+        1254.0
+      ],
+      "outputSize": [
+        294,
+        324
+      ],
+      "mode": "cover-then-contour-mask"
+    },
+    {
+      "id": "p11",
+      "name": "长耳朵的秘密",
+      "style": "自然摄影",
+      "category": "photography",
+      "framing": "侧脸局部",
+      "source": "/assets/party-source-v2/p11.png",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        174.16666666666669,
+        0,
+        1079.8333333333333,
+        1254.0
+      ],
+      "outputSize": [
+        273,
+        378
+      ],
+      "mode": "cover-then-contour-mask"
+    },
+    {
+      "id": "p12",
+      "name": "萨摩耶的毛毛云",
+      "style": "粉彩写实",
+      "category": "fine-art",
+      "framing": "身体与脸部",
+      "source": "/assets/party-source-v2/p12.png",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        162.15517241379314,
+        0,
+        1091.844827586207,
+        1254.0
+      ],
+      "outputSize": [
+        258,
+        348
+      ],
+      "mode": "cover-then-contour-mask"
+    },
+    {
+      "id": "p13",
+      "name": "晒肚皮的巴吉度",
+      "style": "生活摄影",
+      "category": "photography",
+      "framing": "身体局部",
+      "source": "/assets/party-source-v2/p13.png",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        124.21698113207543,
+        0,
+        1129.7830188679245,
+        1254.0
+      ],
+      "outputSize": [
+        255,
+        318
+      ],
+      "mode": "cover-then-contour-mask"
+    },
+    {
+      "id": "p14",
+      "name": "迎风的比格",
+      "style": "运动摄影",
+      "category": "photography",
+      "framing": "半身动作",
+      "source": "/assets/party-source-v2/p14.png",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        77.68141592920358,
+        0,
+        1176.3185840707965,
+        1254.0
+      ],
+      "outputSize": [
+        297,
+        339
+      ],
+      "mode": "cover-then-contour-mask"
+    },
+    {
+      "id": "p15",
+      "name": "法斗大大笑",
+      "style": "波普卡通",
+      "category": "graphic",
+      "framing": "半身",
+      "source": "/assets/party-source-v2/p15.png",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        97.29310344827582,
+        0,
+        1156.7068965517242,
+        1254.0
+      ],
+      "outputSize": [
+        294,
+        348
+      ],
+      "mode": "cover-then-contour-mask"
+    },
+    {
+      "id": "p16",
+      "name": "长鼻子的风",
+      "style": "写实油画",
+      "category": "fine-art",
+      "framing": "侧脸半身",
+      "source": "/assets/party-source-v2/p16.png",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        61.58035714285711,
+        0,
+        1192.419642857143,
+        1254.0
+      ],
+      "outputSize": [
+        303,
+        336
+      ],
+      "mode": "cover-then-contour-mask"
+    },
+    {
+      "id": "p17",
+      "name": "甩水瞬间",
+      "style": "运动摄影",
+      "category": "photography",
+      "framing": "脸部动作",
+      "source": "/assets/party-source-v2/p17.png",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        0,
+        82.03738317757006,
+        1254.0,
+        1171.96261682243
+      ],
+      "outputSize": [
+        321,
+        279
+      ],
+      "mode": "cover-then-contour-mask"
+    },
+    {
+      "id": "p18",
+      "name": "小胡子侦探",
+      "style": "彩铅写实",
+      "category": "fine-art",
+      "framing": "脸部局部",
+      "source": "/assets/party-source-v2/p18.png",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        254.57142857142856,
+        0,
+        999.4285714285714,
+        1254.0
+      ],
+      "outputSize": [
+        237,
+        399
+      ],
+      "mode": "cover-then-contour-mask"
+    },
+    {
+      "id": "p19",
+      "name": "睡成一个圈",
+      "style": "水彩写实",
+      "category": "fine-art",
+      "framing": "全身蜷卧",
+      "source": "/assets/party-source-v2/p19.png",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        182.875,
+        0,
+        1071.125,
+        1254.0
+      ],
+      "outputSize": [
+        255,
+        360
+      ],
+      "mode": "cover-then-contour-mask"
+    },
+    {
+      "id": "p20",
+      "name": "击掌的大爪爪",
+      "style": "微距摄影",
+      "category": "photography",
+      "framing": "爪子局部",
+      "source": "/assets/party-source-v2/p20.png",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        79.13592233009706,
+        0,
+        1174.864077669903,
+        1254.0
+      ],
+      "outputSize": [
+        270,
+        309
+      ],
+      "mode": "cover-then-contour-mask"
+    },
+    {
+      "id": "p21",
+      "name": "黑糖小卷卷",
+      "style": "胶片摄影",
+      "category": "photography",
+      "framing": "全身蜷卧",
+      "source": "/assets/party-source-v2/p21.png",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        111.3364485981308,
+        0,
+        1142.6635514018692,
+        1254.0
+      ],
+      "outputSize": [
+        264,
+        321
+      ],
+      "mode": "cover-then-contour-mask"
+    },
+    {
+      "id": "p22",
+      "name": "可卡的眨眼",
+      "style": "版画",
+      "category": "fine-art",
+      "framing": "脸部半身",
+      "source": "/assets/party-source-v2/p22.png",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        74.10000000000002,
+        0,
+        1179.9,
+        1254.0
+      ],
+      "outputSize": [
+        291,
+        330
+      ],
+      "mode": "cover-then-contour-mask"
+    },
+    {
+      "id": "p23",
+      "name": "伸懒腰的小土狗",
+      "style": "自然摄影",
+      "category": "photography",
+      "framing": "半身动作",
+      "source": "/assets/party-source-v2/p23.png",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        0,
+        12.174757281553411,
+        1254.0,
+        1241.8252427184466
+      ],
+      "outputSize": [
+        309,
+        303
+      ],
+      "mode": "cover-then-contour-mask"
+    },
+    {
+      "id": "p24",
+      "name": "像素柴柴",
+      "style": "像素艺术",
+      "category": "graphic",
+      "framing": "脸部特写",
+      "source": "/assets/party-source-v2/p24.png",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        0,
+        144.69230769230774,
+        1254.0,
+        1109.3076923076924
+      ],
+      "outputSize": [
+        351,
+        270
+      ],
+      "mode": "cover-then-contour-mask"
+    },
+    {
+      "id": "p25",
+      "name": "杜宾的耳语",
+      "style": "单色摄影",
+      "category": "photography",
+      "framing": "侧脸半身",
+      "source": "/assets/party-source-v2/p25.png",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        44.0,
+        0,
+        1210.0,
+        1254.0
+      ],
+      "outputSize": [
+        318,
+        342
+      ],
+      "mode": "cover-then-contour-mask"
+    },
+    {
+      "id": "p26",
+      "name": "柯基小屁屁",
+      "style": "自然摄影",
+      "category": "photography",
+      "framing": "身体局部",
+      "source": "/assets/party-source-v2/p26.png",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        0,
+        92.68695652173915,
+        1254.0,
+        1161.3130434782609
+      ],
+      "outputSize": [
+        345,
+        294
+      ],
+      "mode": "cover-then-contour-mask"
+    },
+    {
+      "id": "p27",
+      "name": "交叉的小爪子",
+      "style": "自然摄影",
+      "category": "photography",
+      "framing": "身体局部",
+      "source": "/assets/party-source-v2/p27.png",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        60.87378640776706,
+        0,
+        1193.126213592233,
+        1254.0
+      ],
+      "outputSize": [
+        279,
+        309
+      ],
+      "mode": "cover-then-contour-mask"
+    },
+    {
+      "id": "p28",
+      "name": "游泳的拉布拉多",
+      "style": "纪实摄影",
+      "category": "photography",
+      "framing": "脸部半身",
+      "source": "/assets/party-source-v2/p28.png",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        123.05607476635515,
+        0,
+        1130.943925233645,
+        1254.0
+      ],
+      "outputSize": [
+        258,
+        321
+      ],
+      "mode": "cover-then-contour-mask"
+    },
+    {
+      "id": "p29",
+      "name": "黑卷毛打哈欠",
+      "style": "油画",
+      "category": "fine-art",
+      "framing": "脸部动作",
+      "source": "/assets/party-source-v2/p29.png",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        168.80769230769232,
+        0,
+        1085.1923076923076,
+        1254.0
+      ],
+      "outputSize": [
+        228,
+        312
+      ],
+      "mode": "cover-then-contour-mask"
+    },
+    {
+      "id": "p30",
+      "name": "斑点小顽皮",
+      "style": "漫画",
+      "category": "graphic",
+      "framing": "脸部半身",
+      "source": "/assets/party-source-v2/p30.png",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        0,
+        41.799999999999955,
+        1254.0,
+        1212.2
+      ],
+      "outputSize": [
+        315,
+        294
+      ],
+      "mode": "cover-then-contour-mask"
+    }
+  ]
+}

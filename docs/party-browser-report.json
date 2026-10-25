@@ -1,0 +1,65 @@
+{
+  "reports": [
+    {
+      "name": "third level loads with thirty named pieces"
+    },
+    {
+      "name": "pointer drag joins adjacent dogs off board",
+      "pair": [
+        "p01",
+        "p02"
+      ]
+    },
+    {
+      "name": "joined pieces move together by pointer drag"
+    },
+    {
+      "name": "group snaps and locks to board",
+      "placed": 2
+    },
+    {
+      "name": "hint and refresh restore",
+      "placed": 3
+    },
+    {
+      "name": "all three level saves remain isolated through switching"
+    },
+    {
+      "name": "organize keeps every loose piece inside table"
+    },
+    {
+      "name": "pause freezes timer and resumes"
+    },
+    {
+      "name": "reference preview opens and closes"
+    },
+    {
+      "name": "all thirty pieces complete with correct success state"
+    },
+    {
+      "name": "restart restores thirty loose pieces and zero progress"
+    },
+    {
+      "name": "390×844 layout has no horizontal overflow and thirty reachable pieces"
+    },
+    {
+      "name": "mobile touch gesture moves a loose dog"
+    },
+    {
+      "name": "mobile hint and refresh restore"
+    },
+    {
+      "name": "no page exceptions or failed HTTP responses"
+    },
+    {
+      "name": "mobile real touch drag snaps to board",
+      "placed": 1
+    },
+    {
+      "name": "mobile blank-canvas native scroll remains available",
+      "before": 250,
+      "after": 445
+    }
+  ],
+  "errors": []
+}

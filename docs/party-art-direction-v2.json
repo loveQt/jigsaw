@@ -1,0 +1,272 @@
+[
+  {
+    "id": "p01",
+    "name": "贴近镜头的柴柴",
+    "style": "自然摄影",
+    "framing": "脸部特写",
+    "category": "photography",
+    "medium": "photorealistic natural dog photography",
+    "subject": "An orange Shiba Inu head extremely close, diagonally tilted. Both glossy eyes in the upper middle, large black nose below; orange and cream cheek fur expands out of every side. Natural individual hairs."
+  },
+  {
+    "id": "p02",
+    "name": "蜷成一团的腊肠",
+    "style": "胶片摄影",
+    "framing": "身体局部",
+    "category": "photography",
+    "medium": "warm analog film photography",
+    "subject": "A chocolate dachshund curled tightly asleep from overhead. Its long torso forms a broad brown spiral, folded paws and nose nestled into its body. Crop outer back and tail at the edges, no bed visible."
+  },
+  {
+    "id": "p03",
+    "name": "扑过来的斑点狗",
+    "style": "运动摄影",
+    "framing": "半身动作",
+    "category": "photography",
+    "medium": "photorealistic high speed action photography",
+    "subject": "A dalmatian lunging toward camera: spotted chest, shoulders and two foreground forepaws dominate the entire frame, part of smiling lower face at the upper edge. White fur and black spots continue to all corners."
+  },
+  {
+    "id": "p04",
+    "name": "金毛的暖洋洋",
+    "style": "写实水彩",
+    "framing": "半身",
+    "category": "fine-art",
+    "medium": "highly realistic textured watercolor painting",
+    "subject": "A golden retriever face and broad chest pressed close, drowsy eyes, flowing amber fur. Dog expands outside the frame; detailed golden fur washes fill every corner, realistic anatomy and rich pigment, not cartoon."
+  },
+  {
+    "id": "p05",
+    "name": "哈士奇的蓝眼睛",
+    "style": "微距摄影",
+    "framing": "眼睛局部",
+    "category": "photography",
+    "medium": "photorealistic macro photography",
+    "subject": "One blue husky eye surrounded by gray and white facial fur. Include brow, cheek and a hint of nose lower right. Actual fur and skin occupy every centimeter, eyelashes and reflected daylight visible."
+  },
+  {
+    "id": "p06",
+    "name": "卷毛小舞者",
+    "style": "油画",
+    "framing": "半身动作",
+    "category": "fine-art",
+    "medium": "expressive realistic impasto oil painting",
+    "subject": "A cream poodle from a low angle lifting a fluffy forepaw beside its laughing mouth, curly shoulders and neck filling every corner. Rich cream, ochre and coral oil brushwork describes real fur and anatomy."
+  },
+  {
+    "id": "p07",
+    "name": "柯基趴趴腿",
+    "style": "自然摄影",
+    "framing": "身体局部",
+    "category": "photography",
+    "medium": "photorealistic natural photography",
+    "subject": "Top down close crop of a corgi splooting: broad orange furry back, fluffy white rump and two short hind paws across the frame. Body continues past every border; no floor visible."
+  },
+  {
+    "id": "p08",
+    "name": "灵缇的侧影",
+    "style": "炭笔素描",
+    "framing": "侧脸半身",
+    "category": "fine-art",
+    "medium": "fine art charcoal and warm graphite drawing",
+    "subject": "A greyhound in profile, long muzzle diagonal, folded ear and elegant neck broaden to fill the entire frame. Dense charcoal crosshatched fur reaches every edge; no white paper backdrop."
+  },
+  {
+    "id": "p09",
+    "name": "巴哥皱皱脸",
+    "style": "棚拍摄影",
+    "framing": "脸部特写",
+    "category": "photography",
+    "medium": "photorealistic studio animal photography",
+    "subject": "Extreme close fawn pug face: forehead wrinkles, soulful eyes, velvet black muzzle and thick neck. Face and folds fill beyond all four edges; natural fur and detailed pores, no studio backdrop visible."
+  },
+  {
+    "id": "p10",
+    "name": "边牧回头看",
+    "style": "水墨写实",
+    "framing": "半身",
+    "category": "fine-art",
+    "medium": "realistic sumi ink and sepia wash painting",
+    "subject": "A black and white border collie turning back over its thick shoulder, one alert eye and raised ear. Overlapping neck and shoulder fur fill the canvas. Dense black ink and ivory coat markings reach all edges, no blank paper."
+  },
+  {
+    "id": "p11",
+    "name": "长耳朵的秘密",
+    "style": "自然摄影",
+    "framing": "侧脸局部",
+    "category": "photography",
+    "medium": "photorealistic candid dog photography",
+    "subject": "A cocker spaniel cheek, one amber eye and cascading chestnut curly ear fill the frame diagonally. Every curl detailed; face cropped at one side. Rich fur reaches all four borders."
+  },
+  {
+    "id": "p12",
+    "name": "萨摩耶的毛毛云",
+    "style": "粉彩写实",
+    "framing": "身体与脸部",
+    "category": "fine-art",
+    "medium": "realistic soft pastel drawing",
+    "subject": "An extremely fluffy Samoyed curled against its own shoulder, dark eye and nose peeking from a cloud of ivory fur. Overlapping back and cheek fill the entire canvas, cool shadow strokes and warm highlights, no simplified cartoon."
+  },
+  {
+    "id": "p13",
+    "name": "晒肚皮的巴吉度",
+    "style": "生活摄影",
+    "framing": "身体局部",
+    "category": "photography",
+    "medium": "photorealistic documentary photography",
+    "subject": "A basset hound lying belly up, extremely close. Cream furry belly, brown flank and two big paws with dark pads fill the frame. A floppy ear and partial nose peek from an edge; no blanket, room or floor."
+  },
+  {
+    "id": "p14",
+    "name": "迎风的比格",
+    "style": "运动摄影",
+    "framing": "半身动作",
+    "category": "photography",
+    "medium": "photorealistic action photography",
+    "subject": "A beagle running past the camera, floppy ear swept across the upper frame, joyful face close to lens, thick tricolor chest and front legs filling below and every corner. No scenic background."
+  },
+  {
+    "id": "p15",
+    "name": "法斗大大笑",
+    "style": "波普卡通",
+    "framing": "半身",
+    "category": "graphic",
+    "medium": "bold vintage pop-art illustration",
+    "subject": "A tan French bulldog laughing with cheeks and shoulders enlarged beyond every border. Black facial folds, ochre fur and blue shadowed neck fill the whole canvas. Strong ink halftone; no sticker border or isolated character."
+  },
+  {
+    "id": "p16",
+    "name": "长鼻子的风",
+    "style": "写实油画",
+    "framing": "侧脸半身",
+    "category": "fine-art",
+    "medium": "refined classical realistic oil painting",
+    "subject": "A cream saluki side profile with long muzzle, soft folded ear and flowing golden neck fur. Closely cropped head and neck fill all edges, nuanced ochre fur brushwork, realistic anatomy."
+  },
+  {
+    "id": "p17",
+    "name": "甩水瞬间",
+    "style": "运动摄影",
+    "framing": "脸部动作",
+    "category": "photography",
+    "medium": "photorealistic high speed photography",
+    "subject": "Extreme close wet terrier shaking its head, scrunched eyes, floppy ears swinging and wet fur radiating across the entire frame. Crisp droplets cling to individual hairs, no surrounding water or backdrop."
+  },
+  {
+    "id": "p18",
+    "name": "小胡子侦探",
+    "style": "彩铅写实",
+    "framing": "脸部局部",
+    "category": "fine-art",
+    "medium": "detailed realistic colored-pencil drawing",
+    "subject": "A schnauzer beard and eyebrows, one bright eye and large dark nose. Gray and cream fur extends to all corners, visible pencil grain, lively whiskers and observational anatomy, not cartoon."
+  },
+  {
+    "id": "p19",
+    "name": "睡成一个圈",
+    "style": "水彩写实",
+    "framing": "全身蜷卧",
+    "category": "fine-art",
+    "medium": "naturalistic detailed watercolor illustration",
+    "subject": "A white puppy curled into a compact circle, sleeping head on its own rump, folded forepaw and tail nestled together. Enlarged so outer fur touches and bleeds beyond every edge. Fur fills all space, no bed."
+  },
+  {
+    "id": "p20",
+    "name": "击掌的大爪爪",
+    "style": "微距摄影",
+    "framing": "爪子局部",
+    "category": "photography",
+    "medium": "photorealistic macro animal photography",
+    "subject": "A boxer raising a broad paw toward camera. Detailed dark paw pads centered, tan fur and chest behind its paw fill all remaining space. Partial nose and one curious eye near upper edge; no room."
+  },
+  {
+    "id": "p21",
+    "name": "黑糖小卷卷",
+    "style": "胶片摄影",
+    "framing": "全身蜷卧",
+    "category": "photography",
+    "medium": "cinematic analog film photography",
+    "subject": "A black and tan dachshund tightly curled into a donut. Silky back circles tucked tan muzzle, little paws and tail inside the curl. Compact body fills entire frame, no empty center, bed or floor."
+  },
+  {
+    "id": "p22",
+    "name": "可卡的眨眼",
+    "style": "版画",
+    "framing": "脸部半身",
+    "category": "fine-art",
+    "medium": "hand printed woodcut with realistic dog proportions",
+    "subject": "A winking golden cocker spaniel, long ears and broad chest fill the entire canvas. Umber, ochre and cream carved fur lines and rich ink texture; all edges are coat and face, no border or background."
+  },
+  {
+    "id": "p23",
+    "name": "伸懒腰的小土狗",
+    "style": "自然摄影",
+    "framing": "半身动作",
+    "category": "photography",
+    "medium": "photorealistic candid animal photography",
+    "subject": "A brown mixed terrier stretching viewed close from front: face low between two large forward paws, shoulders and raised furry back crowd the frame. Fur and paws touch every border, no ground or scene."
+  },
+  {
+    "id": "p24",
+    "name": "像素柴柴",
+    "style": "像素艺术",
+    "framing": "脸部特写",
+    "category": "graphic",
+    "medium": "deliberately chunky polished pixel art",
+    "subject": "An orange Shiba facial closeup, one cocked ear, cream muzzle and large black nose. Orange and cream coat fills the complete square edge to edge. Crisp square pixels; no icon badge or sticker border."
+  },
+  {
+    "id": "p25",
+    "name": "杜宾的耳语",
+    "style": "单色摄影",
+    "framing": "侧脸半身",
+    "category": "photography",
+    "medium": "fine art black and white portrait photography",
+    "subject": "A natural-eared Doberman side portrait, folded ear, elegant dark face and muscular shoulder filling the entire frame. Glossy short fur, bright eye catchlight, silvery whiskers; no studio background visible."
+  },
+  {
+    "id": "p26",
+    "name": "柯基小屁屁",
+    "style": "自然摄影",
+    "framing": "身体局部",
+    "category": "photography",
+    "medium": "photorealistic natural animal photography",
+    "subject": "Close view of a corgi fluffy orange-white rump and short hind paws tucked beneath its body. Broad furry back across upper frame, little tail curve. All corners filled by coat, no head required, no floor."
+  },
+  {
+    "id": "p27",
+    "name": "交叉的小爪子",
+    "style": "自然摄影",
+    "framing": "身体局部",
+    "category": "photography",
+    "medium": "photorealistic warm natural photography",
+    "subject": "Extreme close two golden retriever forepaws crossed over furry chest. Pale golden toes and tiny dark nails centered, thick neck and chest fur fill all four edges. Dog anatomy only, no props."
+  },
+  {
+    "id": "p28",
+    "name": "游泳的拉布拉多",
+    "style": "纪实摄影",
+    "framing": "脸部半身",
+    "category": "photography",
+    "medium": "photorealistic documentary photography",
+    "subject": "A wet chocolate Labrador after swimming, very tight closeup of nose, smiling face and wet furry shoulders with tiny droplets. Head and body fill all borders; no open water background or scenery."
+  },
+  {
+    "id": "p29",
+    "name": "黑卷毛打哈欠",
+    "style": "油画",
+    "framing": "脸部动作",
+    "category": "fine-art",
+    "medium": "energetic realistic oil painting",
+    "subject": "A black poodle mid yawn, curled ears, shiny nose, open mouth and fluffy shoulders close up. Black and deep blue impasto curls fill every edge. Expressive real anatomy, warm highlights, no flat backdrop."
+  },
+  {
+    "id": "p30",
+    "name": "斑点小顽皮",
+    "style": "漫画",
+    "framing": "脸部半身",
+    "category": "graphic",
+    "medium": "expressive textured ink comic",
+    "subject": "A spotted white terrier leaning into the camera, raised eyebrow, spotted cheeks, pink tongue and broad shoulders cover the whole canvas. Cream, charcoal and coral brush color, no sticker outline or blank tile."
+  }
+]
