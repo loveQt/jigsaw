@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#f7f5ef" />
-    <meta name="description" content="把小狗们拼成一只大狗。一个可以慢慢玩的异形木质拼图游戏。" />
+    <meta name="description" content="把弯弯绕绕的心事，拼成一颗完整的心。心形迷宫与小狗异形拼图，慢慢拼，慢慢玩。" />
     <title>拼汪 PAWZZLE · 把快乐，一片片拼起来</title>
     <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
     <link rel="stylesheet" href="/src/style.css" />
@@ -20,13 +20,13 @@
     <main>
       <section class="level-heading">
         <div>
-          <div class="eyebrow"><span class="tiny-line"></span> THE LITTLE JOY COLLECTION <span class="level-chip" id="level-chip">第 03 关</span></div>
-          <h1><span id="level-title">汪汪游乐园</span><span class="title-spark">✳</span></h1>
-          <p id="level-description">30 只小狗，30 种模样。毛茸茸的鼻尖、小爪和笑脸，拼成一个大拥抱。</p>
+          <div class="eyebrow"><span class="tiny-line"></span> THE LITTLE JOY COLLECTION <span class="level-chip" id="level-chip">第 04 关</span></div>
+          <h1><span id="level-title">心有千千结</span><span class="title-spark">✳</span></h1>
+          <p id="level-description">把弯弯绕绕的心事，拼成一颗完整的心。</p>
         </div>
         <div class="level-details">
-          <label class="level-picker" for="level-select"><span>换一份快乐</span><select id="level-select" aria-label="选择关卡"><option value="01">01 · 汪汪，集合！</option><option value="02">02 · 汪汪表情集</option><option value="03" selected>03 · 汪汪游乐园</option></select></label>
-          <div class="level-meta"><span><i class="difficulty-dots advanced" aria-hidden="true"><b></b><b></b><b></b></i> <span id="level-difficulty">趣味进阶</span></span><span><span data-icon="puzzle"></span> <span data-piece-count>30</span> 块小狗拼图</span><span><span data-icon="leaf"></span> 无需旋转</span></div>
+          <label class="level-picker" for="level-select"><span>换一份快乐</span><select id="level-select" aria-label="选择关卡"><option value="01">01 · 汪汪，集合！</option><option value="02">02 · 汪汪表情集</option><option value="03">03 · 汪汪游乐园</option><option value="04" selected>04 · 心有千千结</option></select></label>
+          <div class="level-meta"><span><i class="difficulty-dots advanced" aria-hidden="true"><b></b><b></b><b></b></i> <span id="level-difficulty">耐心挑战</span></span><span><span data-icon="puzzle"></span> <span data-piece-count>24</span> <span id="piece-type">块小狗拼图</span></span><span><span data-icon="leaf"></span> 无需旋转</span></div>
         </div>
       </section>
 
@@ -38,6 +38,7 @@
             <span class="toolbar-divider"></span>
             <button class="tool-button" id="pause-button" title="暂停 · 空格"><span data-icon="pause"></span><span>暂停</span></button>
             <button class="tool-button" id="preview-button" title="查看原图 · P"><span data-icon="image"></span><span>查看原图</span></button>
+            <button class="tool-button" id="guide-button" aria-pressed="true" title="显示或隐藏底板凹槽提示" hidden><span data-icon="bulb"></span><span>底板提示</span></button>
             <button class="tool-button" id="sound-button" aria-label="开启拼接音效" aria-pressed="false" title="开启拼接音效"><span data-icon="sound-off"></span></button>
             <button class="tool-button fullscreen-button" id="fullscreen-button" aria-label="全屏游戏" title="全屏游戏"><span data-icon="expand"></span></button>
           </div>

@@ -2,14 +2,20 @@ import { LEVEL, LEVELS } from './level.js';
 import { PuzzleEngine } from './puzzle-engine.js';
 import { icon, hydrateIcons } from './icons.js';
 import { packRectangles } from './packing.js';
+import { mazeDefs, mazePiece, mazeBoard, mazePreview, mazeMarkers } from './maze-art.js';
 
 hydrateIcons();
 const $ = (id) => document.getElementById(id);
 const svg = $('puzzle-canvas');
 const dialog = $('game-dialog');
+const IS_MAZE = LEVEL.renderStyle === 'maze';
+document.body.classList.toggle('maze-theme', IS_MAZE);
 const BOARD = {x:45, y:60};
 let mobile = window.matchMedia('(max-width: 720px)').matches;
-let WIDTH = mobile ? 700 : 1600, HEIGHT = mobile ? 1850 : 900;
+function tableLayout() {
+  return LEVEL.layouts?.[mobile?'mobile':'desktop'] ?? {width:mobile?700:1600,height:mobile?1850:900};
+}
+let {width:WIDTH,height:HEIGHT} = tableLayout();
 svg.setAttribute('viewBox', `0 0 ${WIDTH} ${HEIGHT}`);
 $('tabletop').classList.toggle('mobile-table', mobile);
 const SAVE_KEY = LEVEL.saveKey;
@@ -19,7 +25,7 @@ $('level-title').textContent = LEVEL.title;
 $('level-chip').textContent = `第 ${LEVEL.number} 关`;
 $('level-description').textContent = LEVEL.subtitle;
 $('level-difficulty').textContent = LEVEL.difficulty;
-document.querySelector('.difficulty-dots').classList.toggle('advanced', TOTAL >= 30);
+document.querySelector('.difficulty-dots').classList.toggle('advanced', TOTAL >= 30 || IS_MAZE);
 $('game-card').setAttribute('aria-label', `${LEVEL.title}拼图游戏`);
 $('level-select').replaceChildren(...LEVELS.map(level => {
   const option = document.createElement('option');
@@ -35,6 +41,18 @@ const nodes = new Map();
 let selected = null, drag = null, started = false, elapsed = 0, timerEnabled = true;
 let soundEnabled = false, modalType = null, lastTick = performance.now(), toastTimeout, restorePaused = false;
 let hintCount = 0, storageAvailable = true, audioContext;
+let guidesEnabled = true, previewRoute = false;
+if (IS_MAZE) {
+  $('piece-type').textContent = '块迷宫拼图';
+  document.querySelector('.board-label').innerHTML = '<span class="label-dot"></span> 一颗心的形状 <span class="label-sub">A PLACE FOR EVERY PIECE</span>';
+  document.querySelector('.pieces-label').innerHTML = '散落的心事 <span class="label-sub">24 LITTLE CONNECTIONS</span>';
+  document.querySelector('.board-caption').innerHTML = `${icon('heart')}绕一点路，也会相遇。`;
+  $('canvas-hint').innerHTML = `${icon('hand')}拾起一段心路，放回心里`;
+  svg.setAttribute('aria-label', '心形迷宫拼图桌面，拖动粉色墙体，拼成完整的心');
+  $('guide-button').hidden = false;
+  $('preview-button').innerHTML = `${icon('image')}<span>完整参考</span>`;
+  $('preview-button').title = '查看完整拼图和迷宫通路 · P';
+}
 
 function shuffled(items) {
   const output = [...items];
@@ -56,16 +74,17 @@ function scatterPositions() {
   return positions;
 }
 
-function looseArea() {return mobile?{x:20,y:720,width:660,height:1080}:{x:690,y:80,width:890,height:760};}
+function looseArea() {return tableLayout().looseArea ?? (mobile?{x:20,y:720,width:660,height:1080}:{x:690,y:80,width:890,height:760});}
 
 const engine = new PuzzleEngine(LEVEL.pieces, {
   puzzleId: LEVEL.id,
   boardOrigin: BOARD,
-  threshold: 20,
+  threshold: LEVEL.snapThreshold ?? 20,
   initialPositions: scatterPositions(),
 });
 
 function pieceArtwork(piece, withShadow = false) {
+  if (IS_MAZE) return mazePiece(piece, 'maze', withShadow);
   const b=piece.bounds;
   return `<path d="${piece.path}" fill="${piece.fill ?? '#946942'}" ${withShadow?'filter="url(#piece-shadow)"':''}/><g clip-path="url(#clip-${piece.id})"><image href="${piece.image}" x="${b.x}" y="${b.y}" width="${b.width}" height="${b.height}" pointer-events="none"/></g><path d="${piece.path}" class="piece-edge"/>`;
 }
@@ -78,7 +97,7 @@ const defs = `<defs>
   ${LEVEL.pieces.map(piece => `<clipPath id="clip-${piece.id}"><path d="${piece.path}"/></clipPath>`).join('')}
 </defs>`;
 
-svg.innerHTML = `${defs}<g transform="translate(${BOARD.x} ${BOARD.y})" id="board-layer" pointer-events="none">
+svg.innerHTML = IS_MAZE ? `${mazeDefs()}<g transform="translate(${BOARD.x} ${BOARD.y})" id="board-layer" pointer-events="none">${mazeBoard(LEVEL,'maze',true)}${mazeMarkers(LEVEL)}</g><g id="placed-layer"></g><g id="loose-layer"></g>` : `${defs}<g transform="translate(${BOARD.x} ${BOARD.y})" id="board-layer" pointer-events="none">
   <path d="${LEVEL.outline}" fill="#ded3b5" stroke="#d0c3a2" stroke-width="15" stroke-linejoin="round" filter="url(#board-shadow)"/>
   <path d="${LEVEL.outline}" fill="url(#board-fill)" stroke="#f7f2df" stroke-width="4"/>
   <path d="${LEVEL.outline}" fill="url(#wood-grain)" opacity=".12"/>
@@ -153,7 +172,7 @@ function begin() {tick(); started=true; $('canvas-hint').style.opacity='0';}
 function save() {
   tick();
   try {
-    localStorage.setItem(SAVE_KEY,JSON.stringify({level:LEVEL.id,engine:engine.serialize(),elapsed,started,timerEnabled,soundEnabled,hintCount,paused:modalType==='pause',mobile}));
+    localStorage.setItem(SAVE_KEY,JSON.stringify({level:LEVEL.id,engine:engine.serialize(),elapsed,started,timerEnabled,soundEnabled,hintCount,paused:modalType==='pause',mobile,guidesEnabled}));
   } catch {
     if (storageAvailable) $('save-status').textContent='此浏览器无法保存，当前进度保留到页面关闭';
     storageAvailable=false;
@@ -166,6 +185,7 @@ function load() {
     if (!engine.restore(data.engine)) return;
     elapsed=data.elapsed; started=Boolean(data.started); timerEnabled=data.timerEnabled!==false;
     soundEnabled=Boolean(data.soundEnabled); restorePaused=Boolean(data.paused); hintCount=Number.isInteger(data.hintCount)&&data.hintCount>=0?data.hintCount:0;
+    guidesEnabled=data.guidesEnabled!==false;updateGuides();
     // Recover finite but out-of-table positions, e.g. a hand-edited save.
     for (const group of engine.groups.values()) {
       const id=group.values().next().value;
@@ -286,19 +306,21 @@ svg.addEventListener('keydown',event=>{
 });
 
 function previewSVG() {
+  if (IS_MAZE) return mazePreview(LEVEL,{solution:previewRoute});
   return `<svg class="preview-art" viewBox="0 0 ${LEVEL.width} ${LEVEL.height}" role="img" aria-label="${LEVEL.title}，${TOTAL} 块拼片组成的完整狗头"><defs><clipPath id="preview-outline"><path d="${LEVEL.outline}"/></clipPath></defs><path d="${LEVEL.outline}" fill="#d5bd8f" stroke="#9f8155" stroke-width="4" stroke-linejoin="round"/><image href="${LEVEL.image}" width="${LEVEL.width}" height="${LEVEL.height}" clip-path="url(#preview-outline)"/></svg>`;
 }
 function closeModal() {if(dialog.open) dialog.close();}
 function openModal(type) {
   tick();cancelDrag();modalType=type;
+  if(type==='preview') previewRoute=false;
   dialog.classList.toggle('preview-dialog',type==='preview');
   $('dialog-close').hidden=type==='pause';
   const content=$('dialog-content');
-  if(type==='pause') content.innerHTML=`<div class="modal-emblem">${icon('pause')}</div><div class="eyebrow">A LITTLE PAUSE</div><h2 id="dialog-title">休息一下，也很好。</h2><p>小狗们会在这里等你。<br/>计时已暂停，快乐不用赶进度。</p><button class="primary-button" data-action="close">${icon('play')}继续拼图</button>`;
-  if(type==='preview') content.innerHTML=`<div class="eyebrow">THE BIG PICTURE</div><h2 id="dialog-title">原来，快乐长这样。</h2><p>记住你喜欢的小狗，再回去找找它。查看期间暂停计时。</p>${previewSVG()}<button class="primary-button" data-action="close">回到拼图${icon('arrow')}</button>`;
-  if(type==='help') content.innerHTML=`<div class="modal-emblem">${icon('paw')}</div><div class="eyebrow">MAKE YOURSELF AT HOME</div><h2 id="dialog-title">一片一片，慢慢来。</h2><div class="help-steps"><div class="help-step"><span>01</span><div><strong>找到小狗的位置</strong><p>把碎片拖到底板，对准轮廓，松手后就会吸附。所有碎片方向都已摆正，无需旋转。</p></div></div><div class="help-step"><span>02</span><div><strong>整个桌面都是你的拼图区</strong><p>碎片可以留在任意空位。相邻碎片在桌面上对齐，也会拼成一组，整组一起拖动。</p></div></div><div class="help-step"><span>03</span><div><strong>按自己的节奏玩</strong><p>点击时钟切换自由模式。随时暂停、查看原图，或用「帮我一块」放好选中的拼块组。进度自动保存。</p></div></div></div><p>小屏幕上下滚动桌面；拖到屏幕上下边缘会自动滚动。<br/>键盘：Tab 选块 · 方向键移动 · Shift 加速 · 回车吸附</p><button class="primary-button" data-action="close">我知道啦${icon('heart')}</button>`;
+  if(type==='pause') content.innerHTML=`<div class="modal-emblem">${icon('pause')}</div><div class="eyebrow">A LITTLE PAUSE</div><h2 id="dialog-title">休息一下，也很好。</h2><p>${IS_MAZE?'散落的心事':'小狗们'}会在这里等你。<br/>计时已暂停，快乐不用赶进度。</p><button class="primary-button" data-action="close">${icon('play')}继续拼图</button>`;
+  if(type==='preview') content.innerHTML=`<div class="eyebrow">${IS_MAZE?'EVERY TURN LEADS TO YOU':'THE BIG PICTURE'}</div><h2 id="dialog-title">${IS_MAZE?'每一段弯路，都有归处。':'原来，快乐长这样。'}</h2><p>${IS_MAZE?'24 段心路，拼成一颗心。绿点是起点，粉点是终点。':'记住你喜欢的小狗，再回去找找它。'}查看期间暂停计时。</p>${previewSVG()}${IS_MAZE?'<button class="route-toggle secondary-button" data-action="route" aria-pressed="false">显示迷宫通路</button>':''}<button class="primary-button" data-action="close">回到拼图${icon('arrow')}</button>`;
+  if(type==='help') content.innerHTML=`<div class="modal-emblem">${icon(IS_MAZE?'heart':'paw')}</div><div class="eyebrow">MAKE YOURSELF AT HOME</div><h2 id="dialog-title">一片一片，慢慢来。</h2><div class="help-steps"><div class="help-step"><span>01</span><div><strong>${IS_MAZE?'把心路放回心里':'找到小狗的位置'}</strong><p>把碎片拖到底板，对准轮廓，松手后就会吸附。所有碎片方向都已摆正，无需旋转。${IS_MAZE?'粉色墙体之间的留白是迷宫通道。':''}</p></div></div><div class="help-step"><span>02</span><div><strong>整个桌面都是你的拼图区</strong><p>碎片可以留在任意空位。相邻碎片在桌面上对齐，也会拼成一组，整组一起拖动。</p></div></div><div class="help-step"><span>03</span><div><strong>${IS_MAZE?'需要一点线索？':'按自己的节奏玩'}</strong><p>${IS_MAZE?'「底板提示」可开关浅色凹槽；「完整参考」可查看成品和起终点通路。':'点击时钟切换自由模式。随时暂停、查看原图，'}也可用「帮我一块」放好选中的拼块组。进度自动保存。</p></div></div></div><p>小屏幕上下滚动桌面；拖到屏幕上下边缘会自动滚动。<br/>键盘：Tab 选块 · 方向键移动 · Shift 加速 · 回车吸附</p><button class="primary-button" data-action="close">我知道啦${icon('heart')}</button>`;
   if(type==='restart') content.innerHTML=`<div class="modal-emblem">${icon('restart')}</div><h2 id="dialog-title">再拼一次小快乐？</h2><p>这一关的拼块会重新打散，计时和进度也会归零。</p><div class="dialog-actions"><button class="secondary-button" data-action="close">接着拼</button><button class="primary-button" data-action="restart">重新开始</button></div>`;
-  if(type==='complete') content.innerHTML=`<div class="modal-emblem">${icon('paw')}</div><div class="eyebrow">ALL TOGETHER, AT LAST</div><h2 id="dialog-title">快乐，完整了！</h2><p>${TOTAL} 片小快乐都找到家了。<br/>谢谢你，为今天拼出了一点小美好。</p><div class="success-stats"><div><strong>${timerEnabled?formatTime(elapsed):'自由'}</strong><span>${timerEnabled?'计时用时':'慢慢享受'}</span></div><div><strong>${TOTAL} / ${TOTAL}</strong><span>拼片已集合</span></div><div><strong>${hintCount}</strong><span>使用帮助</span></div></div><div class="dialog-actions"><button class="secondary-button" data-action="close">欣赏作品</button><button class="primary-button" data-action="restart">再拼一次${icon('restart')}</button></div>`;
+  if(type==='complete') content.innerHTML=`<div class="modal-emblem">${icon(IS_MAZE?'heart':'paw')}</div><div class="eyebrow">ALL TOGETHER, AT LAST</div><h2 id="dialog-title">${IS_MAZE?'心事，终于完整了。':'快乐，完整了！'}</h2><p>${TOTAL} 片小快乐都找到家了。<br/>${IS_MAZE?'还可以打开完整参考，看看藏在心里的迷宫通路。':'谢谢你，为今天拼出了一点小美好。'}</p><div class="success-stats"><div><strong>${timerEnabled?formatTime(elapsed):'自由'}</strong><span>${timerEnabled?'计时用时':'慢慢享受'}</span></div><div><strong>${TOTAL} / ${TOTAL}</strong><span>拼片已集合</span></div><div><strong>${hintCount}</strong><span>使用帮助</span></div></div><div class="dialog-actions"><button class="secondary-button" data-action="close">欣赏作品</button><button class="primary-button" data-action="restart">再拼一次${icon('restart')}</button></div>`;
   if(!dialog.open) dialog.showModal();
   lastTick=performance.now();
   save();
@@ -307,6 +329,13 @@ dialog.addEventListener('click',event=>{
   const action=event.target.closest('[data-action]')?.dataset.action;
   if(action==='close') closeModal();
   if(action==='restart') restart();
+  if(action==='route') {
+    previewRoute=!previewRoute;
+    $('dialog-content').querySelector('.preview-art').outerHTML=previewSVG();
+    const button=$('dialog-content').querySelector('[data-action="route"]');
+    button.setAttribute('aria-pressed',String(previewRoute));
+    button.textContent=previewRoute?'隐藏迷宫通路':'显示迷宫通路';
+  }
   if(event.target===dialog) {
     const r=dialog.getBoundingClientRect();
     if(event.clientX<r.left || event.clientX>r.right || event.clientY<r.top || event.clientY>r.bottom) closeModal();
@@ -317,7 +346,7 @@ $('dialog-close').addEventListener('click',closeModal);
 
 function restart() {
   cancelDrag();engine.reset(scatterPositions());selected=null;elapsed=0;started=false;hintCount=0;
-  closeModal();lastTick=performance.now();render();save();toast('小狗们准备好啦，再拼一次吧');
+  closeModal();lastTick=performance.now();render();save();toast(IS_MAZE?'心路已重新散开，慢慢拼吧':'小狗们准备好啦，再拼一次吧');
 }
 function celebrate() {
   if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -333,6 +362,12 @@ $('level-select').addEventListener('change', event => {
 });
 
 $('pause-button').addEventListener('click',()=>openModal('pause'));
+function updateGuides() {
+  if(!IS_MAZE) return;
+  $('maze-guides').style.display=guidesEnabled?'':'none';
+  $('guide-button').setAttribute('aria-pressed',String(guidesEnabled));
+}
+$('guide-button').addEventListener('click',()=>{guidesEnabled=!guidesEnabled;updateGuides();save();});
 $('preview-button').addEventListener('click',()=>openModal('preview'));
 $('help-button').addEventListener('click',()=>openModal('help'));
 $('restart-button').addEventListener('click',()=>openModal('restart'));
@@ -378,7 +413,7 @@ $('shuffle-button').addEventListener('click',()=>{
   render();save();toast('碎片整理好了，已经拼好的组合会保留');
 });
 window.matchMedia('(max-width: 720px)').addEventListener('change',event=>{
-  cancelDrag();mobile=event.matches;WIDTH=mobile?700:1600;HEIGHT=mobile?1850:900;
+  cancelDrag();mobile=event.matches;({width:WIDTH,height:HEIGHT}=tableLayout());
   svg.setAttribute('viewBox',`0 0 ${WIDTH} ${HEIGHT}`);$('tabletop').classList.toggle('mobile-table',mobile);
   organize();render();save();
 });

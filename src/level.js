@@ -1,6 +1,7 @@
 import { MOSAIC_DATA } from './mosaic-data.js';
 import { CONTOUR_DATA } from './contour-data.js';
 import { PARTY_DATA } from './party-data.js';
+import { MAZE_DATA } from './maze-geometry.js';
 
 export const LEVELS = [
   {
@@ -26,6 +27,16 @@ export const LEVELS = [
     subtitle: '30 只小狗，30 种模样。毛茸茸的鼻尖、小爪和笑脸，拼成一个大拥抱。',
     difficulty: '趣味进阶',
     saveKey: `pawzzle-${PARTY_DATA.id}-v1`,
+  },
+  {
+    ...MAZE_DATA,
+    number: '04',
+    title: '心有千千结',
+    subtitle: '把弯弯绕绕的心事，拼成一颗完整的心。',
+    difficulty: '耐心挑战',
+    image: '/assets/heart-maze-v1/preview.svg',
+    saveKey: `pawzzle-${MAZE_DATA.id}-v1`,
+    snapThreshold: 12,
   },
 ];
 

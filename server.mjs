@@ -9,6 +9,7 @@ const runtimeFiles = new Set([
   '/src/icons.js', '/src/style.css', '/src/packing.js', '/src/mosaic-data.js',
   '/src/contour-data.js', '/src/contour-geometry.js',
   '/src/party-data.js', '/src/party-geometry.js',
+  '/src/maze-geometry.js', '/src/maze-art.js',
 ]);
 const types = {
   '.html': 'text/html; charset=utf-8',

@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { MOSAIC_DATA } from '../src/mosaic-data.js';
 import { CONTOUR_DATA } from '../src/contour-data.js';
 import { PARTY_DATA } from '../src/party-data.js';
+import { MAZE_DATA } from '../src/maze-geometry.js';
 import { LEVEL, LEVELS } from '../src/level.js';
 import { PuzzleEngine } from '../src/puzzle-engine.js';
 
@@ -217,17 +218,17 @@ test('the actual level can be completed, restored and restarted', () => {
 
 });
 
-test('all three levels are available with independent saves and the new collection opens by default', () => {
-  assert.deepEqual(LEVELS.map(level => level.number), ['01', '02', '03']);
-  assert.equal(LEVEL.number, '03');
-  assert.equal(LEVEL.pieces.length, 30);
+test('all four levels are available with independent saves and the heart maze opens by default', () => {
+  assert.deepEqual(LEVELS.map(level => level.number), ['01', '02', '03', '04']);
+  assert.equal(LEVEL.number, '04');
+  assert.equal(LEVEL.pieces.length, 24);
   assert.equal(new Set(LEVELS.map(level => level.saveKey)).size, LEVELS.length);
   assert.equal(LEVELS[0].saveKey, 'pawzzle-puppy-gathering-v2');
   assert.equal(LEVELS[1].saveKey, `pawzzle-${CONTOUR_DATA.id}-v1`);
 });
 
-test('saved progress cannot cross between any of the three levels', () => {
-  const engines = [MOSAIC_DATA, CONTOUR_DATA, PARTY_DATA].map(makeLevelEngine);
+test('saved progress cannot cross between any of the four levels', () => {
+  const engines = [MOSAIC_DATA, CONTOUR_DATA, PARTY_DATA, MAZE_DATA].map(makeLevelEngine);
   engines.forEach(engine => engine.hint());
   const snapshots = engines.map(engine => engine.serialize());
   for (let index = 0; index < engines.length; index += 1) {

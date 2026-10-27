@@ -1,0 +1,26 @@
+{
+  "id": "heart-maze-v1",
+  "config": {
+    "seed": 20261027,
+    "columns": 22,
+    "rows": 21,
+    "step": 24,
+    "wall": 8,
+    "x": 36,
+    "y": 60,
+    "pieceCount": 24
+  },
+  "rooms": 224,
+  "wallTiles": 530,
+  "pieces": 24,
+  "solutionRooms": 81,
+  "start": "5,1",
+  "end": "9,17",
+  "assets": [
+    "preview.svg",
+    "solution.svg",
+    "blueprint.svg",
+    "contact.svg"
+  ],
+  "source": "Original deterministic SVG geometry; no raster or external assets."
+}

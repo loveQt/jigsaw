@@ -18,3 +18,62 @@
 .level-picker select:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 @media(max-width:1050px) and (min-width:721px){.level-details{gap:14px}.level-details .level-meta{padding-top:0;max-width:none;gap:12px}.level-picker>span{display:none}}
 @media(max-width:720px){.level-details{align-items:flex-start;gap:12px;margin-top:16px}.level-picker{width:100%;justify-content:space-between}.level-picker select{max-width:220px;flex:1}.level-details .level-meta{padding-top:0;gap:20px}}
+
+/* The maze is molded rose plastic on a cool white ceramic tray. */
+.maze-theme{--accent:#ad647f;--ink:#53474c;--paper:#faf7f3;--line:#eae1df}
+.maze-theme .site-header{background:#fcfaf7}
+.maze-theme .brand-mark{background:#b97991;color:#fff2f5}
+.maze-theme .title-spark{color:#cc93a8}
+.maze-theme .level-chip{background:#f1e3e8;color:#a16c81}
+.maze-theme .eyebrow,.maze-theme .level-meta{color:#9b8a90}
+.maze-theme .level-heading p{color:#9b8c8e}
+.maze-theme .level-picker select{color:#8b6775;background:#f6edef;border-color:#e8dbe0}
+.maze-theme .difficulty-dots.advanced b{background:#c48da3}
+.maze-theme .game-card{border-color:#e6dbd7;box-shadow:0 12px 45px #74554e08}
+.maze-theme .game-toolbar,.maze-theme .game-footer{background:#fffdfa;border-color:#e9e0db}
+.maze-theme .tabletop{
+  background-color:#ece5db;
+  background-image:repeating-linear-gradient(92deg,transparent 0 4px,#bca68c06 5px,transparent 6px 11px),radial-gradient(ellipse at 22% 28%,#fffdf4b5,transparent 75%),linear-gradient(105deg,#ece5db,#e6ddd0);
+  background-size:auto,100% 100%,100% 100%;
+}
+.maze-theme .table-label{color:#9e8e87}
+.maze-theme .label-sub{color:#b6a79d}
+.maze-theme .label-dot{background:#be8c9f}
+.maze-theme .progress-icon,.maze-theme .tip-icon{background:#f4e8ed;color:#ad7c90}
+.maze-theme .progress-copy strong{color:#ab7088}
+.maze-theme .progress-track{background:#f1e7eb}
+.maze-theme .progress-track span{background:#c68ca4}
+.maze-theme .board-caption{color:#a08c86;bottom:10%;width:43%}
+.maze-theme .pieces-label{left:51%}
+.maze-theme .canvas-hint{color:#a39188}
+.maze-theme .piece .piece-edge{stroke:#b67c94;stroke-width:.55}
+.maze-theme .piece.locked .piece-edge{stroke:#b67c94;stroke-width:.55}
+.maze-theme .piece.selected .piece-edge,.maze-theme .piece:focus-visible .piece-edge{stroke:#985770;stroke-width:1.7}
+.maze-theme .piece.flash .piece-edge{stroke:#719e8b;stroke-width:1.5}
+.maze-theme .piece.locked .maze-hit{pointer-events:none}
+.maze-theme .piece:hover{filter:drop-shadow(0 5px 4px #774f6135)}
+.maze-theme .piece.dragging{filter:drop-shadow(0 9px 7px #774f6145)}
+.maze-theme .tool-button[aria-pressed=true]{background:#f4e8ec;color:#a66a83}
+.maze-theme .primary-button:hover{background:#9a5670}
+.maze-theme .modal-emblem{background:#f3e3e9;color:#b27991}
+.maze-theme dialog{background:#fcf9f5;border-color:#e9dfe0}
+.maze-theme .toast{background:#8a6575;border-color:#a47b8d}
+.maze-preview{filter:none;max-height:55vh}
+.route-toggle{margin-right:12px;font-size:12px}
+.route-toggle[aria-pressed=true]{background:#e5eee9;border-color:#aec6b9;color:#507e6a}
+@media(max-width:1050px) and (min-width:721px){
+  .maze-theme .game-toolbar{padding:0 16px}
+  .maze-theme .tool-button{padding:8px 7px;font-size:11px}
+  .maze-theme .toolbar-divider{margin:0 3px}
+}
+@media(max-width:720px){
+  .maze-theme .tabletop.mobile-table .board-caption{top:40.25%;bottom:auto;width:100%}
+  .maze-theme .tabletop.mobile-table .pieces-label{top:44.5%}
+  .maze-theme .toolbar-divider{display:none}
+  .maze-theme .tool-button{font-size:10px;gap:4px;padding:7px 4px}
+  .maze-theme #pause-button>span:last-child{display:none}
+  .maze-theme .timer-button{min-width:81px;padding:7px;font-size:11px;gap:5px}
+  .maze-theme .toolbar-actions{gap:3px}
+  .route-toggle{margin:0 6px 10px 0;padding:12px 10px}
+  .maze-theme .preview-dialog .primary-button{min-width:130px;padding:12px 16px}
+}
